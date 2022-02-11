@@ -13,7 +13,10 @@ font xft:URWGothic-Book 11
 
 floating_modifier $mod
 
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+ctrl+Return exec emacs -nw
+bindsym $mod+Return exec qterminal 
+
+bindsym $mod+shift+Return exec  /home/me/Documents/MATLABS6/bin/matlab
 
 # Window kill command
 bindsym $mod+Shift+q kill
@@ -98,14 +101,14 @@ set $ws7 7
 set $ws8 8
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1; $feh /home/tellme_y/wal1.jpg 
-bindsym $mod+2 workspace $ws2; $feh /home/tellme_y/tt.png
-bindsym $mod+3 workspace $ws3; $feh /home/tellme_y/Downloads/free.png
-bindsym $mod+4 workspace $ws4; $feh /home/tellme_y/Downloads/wp7520142-gnu-wallpapers.jpg
-bindsym $mod+5 workspace $ws5; $feh /home/tellme_y/Downloads/wp7520165-gnu-wallpapers.png
-bindsym $mod+6 workspace $ws6; $feh /home/tellme_y/Downloads/wp7520197-gnu-wallpapers.jpg
-bindsym $mod+7 workspace $ws7; $feh /home/tellme_y/Downloads/wp7519979-gnu-wallpapers.jpg
-bindsym $mod+8 workspace $ws8; $feh /home/tellme_y/Pictures/free_as_in_freedom.png 
+bindsym $mod+1 workspace $ws1; $feh ~/Downloads/wallpaperflare.com_wallpaper.jpg --bg-fill 
+bindsym $mod+2 workspace $ws2; $feh /home/me/Downloads/TimetableS6.jpeg  
+bindsym $mod+3 workspace $ws3; $feh /home/me/Pictures/Walll/50667.jpg --bg-fill 
+bindsym $mod+4 workspace $ws4; $feh ~/Downloads/dis1.jpg -bg-fill 
+bindsym $mod+5 workspace $ws5; $feh /home/me/Downloads/pinki.jpg --bg-fill 
+bindsym $mod+6 workspace $ws6; $feh /home/me/Downloads/cutee.jpg --bg-fill 
+bindsym $mod+7 workspace $ws7; $feh /home/me/Pictures/Walll/238192.jpg --bg-fill 
+bindsym $mod+8 workspace $ws8; $feh ~/des8.jpg --bg-fill 
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -217,7 +220,12 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-#exec --no-startup-id picom
+exec --no-startup-id bluetoothctl power on
+#exec --no-startup-id bash ~/.config/polybar/launch.sh --forest 
+
+exec --no-startup-id combistart 
+
+
 # Theme colors
 client.focused          #272827 #272827 #657b83 #272827 #272827
 client.focused_inactive #272827 #272827 #657b83 #272827 #272827
@@ -282,19 +290,33 @@ bindsym XF86TouchpadOff exec --no-startup-id synclient Touchpadoff=1
 
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightness-controller  # light -A 5  increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # decrease screen brightness
 
-bar {
-status_command i3status
-}
+#bar {
+  #  font pango:DejaVu Sans Mono, FontAwesome 12
+   # position bottom
+    #status_command /home/me/.cargo/bin/i3status-rs /home/me/Documents/gitpacks/i3status-rust/examples/config.toml
+#    colors {
+ #       separator #666666
+#        background #222222
+#        statusline #dddddd
+#        focused_workspace #0088CC #0088CC #ffffff
+#        active_workspace #333333 #333333 #ffffff
+#        inactive_workspace #333333 #333333 #888888
+#        urgent_workspace #2f343a #900000 #ffffff
+#    }
+#}
 
  # Mute mic
  bindsym  $mod+m exec --no-startup-id pactl set-source-mute 1 toggle  
  # Download Manager Xtreme
- bindsym  $mod+\ exec --no-startup-id xdman 
+ bindsym  $mod+p exec --no-startup-id i3lock -i /home/me/Pictures/ls.png 
+ bindsym  $mod+x exec --no-startup-id sharefile 
+
 
  # emoji 
- # bindsym $mod+` exec --no-startup-id rofi -show emoji -modi emoji
+  bindsym $mod+Shift+w exec --no-startup-id nmcli device wifi list | rofi -i -dmenu | awk '{print $1}' | xargs nmcli dev wifi connect
 
 
+exec  xinput set-prop "ELAN1200:00 04F3:30EF Touchpad" "libinput Tapping Enabled" 1
